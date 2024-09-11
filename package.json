@@ -1,0 +1,31 @@
+{
+  "name": "waveshaper",
+  "version": "0.0.0",
+  "description": "SVG based React components for definition, visualization and manipulation of curves.",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adagit94/waveshaper.git"
+  },
+  "keywords": [
+    "waves",
+    "curves"
+  ],
+  "author": "Adam Pelc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adagit94/waveshaper/issues"
+  },
+  "homepage": "https://github.com/adagit94/waveshaper#readme",
+  "dependencies": {
+    "plot": "file:../plot",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.6.2"
+  }
+}
