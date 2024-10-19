@@ -19,6 +19,7 @@
   "homepage": "https://github.com/adagit94/waveshaper#readme",
   "dependencies": {
     "plot": "file:../plot",
+    "curve": "file:../curve",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
