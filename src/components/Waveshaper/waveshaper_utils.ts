@@ -6,12 +6,13 @@ type CurvesValuesOperation = "min" | "max" | "avg" | "sum" | ((values: number[])
 type CombineCurvesParams = {
   dataSets: AxesValues[];
   operation: CurvesValuesOperation;
+  controlSetIndex?: number
 };
 
-export const combineCurves = ({ dataSets, operation }: CombineCurvesParams) => {
+export const combineCurves = ({ dataSets, operation, controlSetIndex }: CombineCurvesParams) => {
   let values: number[] = [];
 
-  for (const dataSet of dataSets) {
+  for (const dataSet of controlSetIndex !== undefined ? [dataSets[controlSetIndex]] : dataSets) {
     for (const [x] of dataSet) {
       if (!values.includes(x)) {
         values.push(x);
@@ -20,27 +21,32 @@ export const combineCurves = ({ dataSets, operation }: CombineCurvesParams) => {
   }
 
   values = values.sort();
+  let newValues: number[] = [];
 
   for (const x of values) {
-    const interpolatedValues = dataSets.map((set) => getInterpolatedValue("x", x, set));
+    const interpolatedValues = dataSets.map((set) => getInterpolatedValue("x", x, set)).filter((v) => v !== undefined);
+
+    newValues.push(mergeValues(interpolatedValues, operation));
   }
+
+  return newValues
 };
 
-const mergeValues = (values: number[], operation: CurvesValuesOperation) => {
+const mergeValues = (values: number[], operation: CurvesValuesOperation): number => {
   switch (operation) {
     case "min":
-      break;
+        return Math.min(...values)
 
     case "max":
-      break;
+        return Math.max(...values)
 
     case "avg":
-      break;
+        return values.reduce((acc, val) => acc + val) / values.length
 
     case "sum":
-      break;
+        return values.reduce((acc, val) => acc + val)
 
     default:
-      operation?.(values);
+      return operation(values);
   }
 };

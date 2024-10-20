@@ -1,14 +1,9 @@
-import type { PointChartProps } from "plot"
-import type { TFramerValues } from "plot/src/framer"
-
-type VariableSettings = {
-    valueHandler: (params: {frame: TFramerValues})
-}
+import { PointChart, type PointChartProps } from "plot"
+import React from "react"
 
 type WaveshaperProps = PointChartProps & {
-    variables: Record<string, >
 }
 
-export default function Waveshaper({}: WaveshaperProps) {
-    return null
+export default function Waveshaper({ ...pointChartProps }: WaveshaperProps) {
+    return <div><PointChart {...pointChartProps} /><div></div></div>
 }
